@@ -1,0 +1,357 @@
+
+    :root {
+      --bg-main: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --border-color: #E2E8F0;
+      --input-bg: #FFFFFF;
+      --primary-navy: #0A192F;
+      --secondary-navy: #1E3A8A;
+      --accent-blue: #2563EB;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="dark"] {
+      --bg-main: #0F172A;
+      --card-bg: #1E293B;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --border-color: #334155;
+      --input-bg: #0F172A;
+      --primary-navy: #38BDF8;
+      --secondary-navy: #60A5FA;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Times New Roman', Times, serif;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      min-height: 100vh;
+    }
+
+    .top-bar {
+      width: 100%;
+      max-width: 794px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .app-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-navy);
+    }
+
+    .theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .controls {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 794px;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 24px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+      width: 100%;
+      padding: 8px 12px;
+      background: var(--input-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .form-group input:focus, 
+    .form-group select:focus, 
+    .form-group textarea:focus {
+      border-color: var(--accent-blue);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      grid-column: span 2;
+    }
+
+    button.action-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .btn-pdf { background-color: #2563EB; }
+    .btn-png { background-color: #059669; }
+    .btn-clear { background-color: #DC2626; }
+
+    /* Preview Wrapper */
+    .preview-wrapper {
+      width: 100%;
+      max-width: 794px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+    }
+
+    /* Fixed A4 Page Container */
+    .a4-page {
+      width: 794px;
+      height: 1123px;
+      background: #FFFFFF !important;
+      color: #0F172A !important;
+      padding: 30px;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      transform-origin: top center;
+      flex-shrink: 0;
+      border: 1px solid #CBD5E1;
+    }
+
+    /* Inner Border Frame */
+    .outer-border-box {
+      border: 1px solid #94A3B8;
+      height: 100%;
+      width: 100%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .watermark-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      height: 380px;
+      object-fit: contain;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .header, .content-section, .footer-section {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .logo-container {
+      margin-bottom: 12px;
+    }
+
+    .logo-container img {
+      width: 110px;
+      height: auto;
+    }
+
+    .univ-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0B2545;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .motto {
+      font-size: 13px;
+      font-style: italic;
+      color: #334155;
+      margin-bottom: 12px;
+    }
+
+    .dept-name {
+      font-size: 13px;
+      font-weight: bold;
+      color: #0B2545;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-top: 2px solid #0B2545;
+      border-bottom: 2px solid #0B2545;
+      padding: 4px 0;
+      margin: 0 auto;
+      max-width: 90%;
+    }
+
+    .content-section {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .doc-type {
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #0B2545;
+      text-align: center;
+    }
+
+    .details-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-left: 10px;
+    }
+
+    .details-table td {
+      padding: 4px 0;
+      font-size: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #0B2545;
+      vertical-align: top;
+    }
+
+    .details-table td.label-col {
+      width: 140px;
+    }
+
+    .details-table td.colon-col {
+      width: 25px;
+    }
+
+    .footer-section {
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+    }
+
+    .sub-grid {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .col-sub {
+      width: 45%;
+      font-size: 14px;
+      color: #0B2545;
+    }
+
+    .col-header {
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: #0B2545;
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table td {
+      padding: 3px 0;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #0B2545;
+      vertical-align: top;
+    }
+
+    .info-table td.info-label {
+      width: 75px;
+    }
+
+    .info-table td.info-colon {
+      width: 25px;
+    }
+
+    .date-row {
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #0B2545;
+    }
+
+    @media screen and (max-width: 820px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-group.full-width, .btn-group {
+        grid-column: span 1;
+      }
+      .btn-group {
+        flex-direction: column;
+      }
+    }

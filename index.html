@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMU Assignment Cover Page Generator</title>
+  
+  <!-- jsPDF and html2canvas Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="app-title">BMU Cover Page Generator</div>
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <span id="theme-icon">☀️</span> <span id="theme-text">Light Mode</span>
+    </button>
+  </div>
+
+  <div class="controls">
+    <div class="form-grid">
+      
+      <div class="form-group full-width">
+        <label for="in-dept">Department</label>
+        <select id="in-dept" onchange="handleInputChange()">
+          <option value="DEPARTMENT OF MARITIME LAW AND POLICY">DEPARTMENT OF MARITIME LAW AND POLICY</option>
+          <option value="DEPARTMENT OF NAVAL ARCHITECTURE AND OFFSHORE ENGINEERING">DEPARTMENT OF NAVAL ARCHITECTURE AND OFFSHORE ENGINEERING</option>
+          <option value="DEPARTMENT OF OCEANOGRAPHY AND HYDROGRAPHY">DEPARTMENT OF OCEANOGRAPHY AND HYDROGRAPHY</option>
+          <option value="DEPARTMENT OF PORT AND MARITIME MANAGEMENT">DEPARTMENT OF PORT AND MARITIME MANAGEMENT</option>
+          <option value="DEPARTMENT OF MARINE FISHERIES AND AQUACULTURE">DEPARTMENT OF MARINE FISHERIES AND AQUACULTURE</option>
+        </select>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="in-topic">Topic</label>
+        <input type="text" id="in-topic" oninput="handleInputChange()">
+      </div>
+
+      <div class="form-group">
+        <label for="in-coursetitle">Course Title</label>
+        <input type="text" id="in-coursetitle" oninput="handleInputChange()">
+      </div>
+
+      <div class="form-group">
+        <label for="in-code">Course Code</label>
+        <input type="text" id="in-code" oninput="handleInputChange()">
+      </div>
+
+      <div class="form-group">
+        <label for="in-teacher">Submitted To</label>
+        <textarea id="in-teacher" rows="3" oninput="handleInputChange()"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="in-student-name">Submitted By - Name</label>
+        <input type="text" id="in-student-name" oninput="handleInputChange()">
+        <label for="in-student-id" style="margin-top: 6px;">Submitted By - ID</label>
+        <input type="text" id="in-student-id" oninput="handleInputChange()">
+      </div>
+
+      <div class="form-group full-width">
+        <label for="in-date">Date of Submission</label>
+        <input type="date" id="in-date" onchange="handleInputChange()">
+      </div>
+
+      <div class="btn-group">
+        <button class="action-btn btn-pdf" onclick="exportNativeTextPDF()">Export Text PDF</button>
+        <button class="action-btn btn-png" onclick="exportPNG()">Export PNG</button>
+        <button class="action-btn btn-clear" onclick="clearSavedData()">Clear Data</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="preview-wrapper" id="preview-wrapper">
+    <div class="a4-page" id="cover-preview">
+      <div class="outer-border-box">
+        <img src="logo.webp" alt="Watermark" class="watermark-overlay" id="main-logo-img">
+
+        <div class="header">
+          <div class="logo-container">
+            <img src="logo.webp" alt="University Logo">
+          </div>
+          <div class="univ-name">BANGLADESH MARITIME UNIVERSITY</div>
+          <div class="motto">We strive for Maritime Excellence</div>
+          <div class="dept-name" id="out-dept"></div>
+        </div>
+
+        <div class="content-section">
+          <div class="doc-type">ASSIGNMENT ON</div>
+          
+          <table class="details-table">
+            <tr>
+              <td class="label-col">TOPIC</td>
+              <td class="colon-col">:</td>
+              <td id="out-topic"></td>
+            </tr>
+            <tr>
+              <td class="label-col">COURSE TITLE</td>
+              <td class="colon-col">:</td>
+              <td id="out-coursetitle"></td>
+            </tr>
+            <tr>
+              <td class="label-col">COURSE CODE</td>
+              <td class="colon-col">:</td>
+              <td id="out-code"></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="footer-section">
+          <div class="sub-grid">
+            <div class="col-sub">
+              <div class="col-header">SUBMITTED TO -</div>
+              <div id="out-teacher" style="white-space: pre-line;"></div>
+            </div>
+            
+            <div class="col-sub">
+              <div class="col-header">SUBMITTED BY -</div>
+              <table class="info-table">
+                <tr>
+                  <td class="info-label">NAME</td>
+                  <td class="info-colon">:</td>
+                  <td id="out-student-name"></td>
+                </tr>
+                <tr>
+                  <td class="info-label">ID</td>
+                  <td class="info-colon">:</td>
+                  <td id="out-student-id"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="date-row">
+            DATE OF SUBMISSION : <span id="out-date"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
